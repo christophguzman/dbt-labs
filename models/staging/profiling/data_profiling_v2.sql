@@ -1,0 +1,14 @@
+SELECT 
+    A.TABLE_NAME, 
+    A.COLUMN_NAME, 
+    B.DATA_TYPE, 
+    B.ORDINAL_POSITION,
+    A.NOT_NULL_CNT, 
+    A.unique_val_cnt,
+    A.min_value,
+    A.max_value,
+    CURRENT_TIMESTAMP(0)::TIMESTAMP_NTZ AS LAST_PROFILED
+FROM {{ ref('data_profiling') }} A 
+LEFT JOIN INFORMATION_SCHEMA.COLUMNS B 
+    ON UPPER(A.TABLE_NAME) = B.TABLE_CATALOG || '.' || B.TABLE_SCHEMA || '.' || B.TABLE_NAME
+    AND UPPER(A.COLUMN_NAME) = B.COLUMN_NAME
