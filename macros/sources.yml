@@ -1,0 +1,8 @@
+version: 2
+
+macros:
+  - name: create_streams
+    description: Creates stream on top of table. This stream naming convention is the passed in argument <TABLE_NAME>_STREAM
+    arguments:
+      - name: macro_name
+        description: DDL macro for table

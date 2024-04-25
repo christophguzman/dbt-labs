@@ -22,6 +22,10 @@ sources:
             tests:
               - unique
               - not_null
+      - name: customer_address
+        description: Customer Address
+      - name: customer_address_xwalk
+        description: Bridge Table for Customer and Customer Address
               
         loaded_at_field: _etl_loaded_at
         freshness: 
