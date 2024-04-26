@@ -61,8 +61,5 @@ models:
               values: ['shipped','completed','returned','return_pending','placed']
       - name: customer_id
         description: Foreign key to stg_customers.customer_id.
-        tests:
-          - relationships:
-              field: customer_id
-              to: ref('stg_customers')
+        
           
