@@ -5,7 +5,7 @@
         
         USE SCHEMA {{generate_schema_name('MARTS')}};
 
-        CREATE TABLE IF NOT EXISTS customer_dim_mart (
+        CREATE TABLE IF NOT EXISTS {{target.database}}.{{generate_schema_name('MARTS')}}.customer_dim_mart (
             CUSTOMER_ID	NUMBER(38,0),
             ADDRESS_ID	NUMBER(1,0),
             FIRST_NAME	VARCHAR(16777216),
