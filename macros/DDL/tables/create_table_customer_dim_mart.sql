@@ -1,7 +1,11 @@
 {% macro customer_dim_mart() -%}
     {%- set sql -%}
         
-        CREATE OR REPLACE TABLE {{target.database}}.{{target.schema}}.customer_dim_mart (
+        USE DATABASE {{target.database}};
+        
+        USE SCHEMA {{generate_schema_name('MARTS')}};
+
+        CREATE TABLE IF NOT EXISTS customer_dim_mart (
             CUSTOMER_ID	NUMBER(38,0),
             ADDRESS_ID	NUMBER(1,0),
             FIRST_NAME	VARCHAR(16777216),

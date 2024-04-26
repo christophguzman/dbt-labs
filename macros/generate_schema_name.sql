@@ -17,10 +17,8 @@
 
     {% if env_var('DBT_TARGET_NAME') != 'prod' %} 
         {% set default_schema = target.schema + '_' + default_schema  %}
-    {% else %}
-        {{ default_schema }}       
     {% endif %}
     
     {{ default_schema }} 
-    
+
 {%- endmacro %}
