@@ -1,7 +1,11 @@
 {% macro order_amounts_by_day_mart() -%}
     {%- set sql -%}
         
-        CREATE OR REPLACE TABLE {{target.database}}.{{target.schema}}.order_amounts_by_day_mart (
+        USE DATABASE {{target.database}};
+
+        USE SCHEMA {{generate_schema_name('marts')}};
+        
+        CREATE TABLE IF NOT EXISTS order_amounts_by_day_mart (
             order_date DATE,
             placed_amount number(18,2),
             shipped_amount number(18,2),
