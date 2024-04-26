@@ -1,6 +1,6 @@
 {% snapshot customer_dim_mart_snapshot %}
 
-{% set new_schema=target.schema %}
+{% set new_schema={{generate_schema_name('marts')}} %}
 {% set new_database=target.database %}
 
     {{
