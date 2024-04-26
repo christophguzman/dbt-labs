@@ -1,7 +1,8 @@
 {{
     config(
         materialized='incremental',
-        unique_key=['customer_id','address_id']
+        unique_key=['customer_id','address_id'],
+        schema='marts'
     )
 }}
 
@@ -24,7 +25,7 @@ SELECT
     COALESCE(B.CREATED_DATE, CURRENT_TIMESTAMP(0)::TIMESTAMP_NTZ) AS CREATED_DATE, 
     CURRENT_TIMESTAMP(0)::TIMESTAMP_NTZ AS LAST_UPDATED_DATE
 FROM get_hash_key A
-LEFT JOIN {{target.database}}.{{target.schema}}.customer_dim_mart B
+LEFT JOIN customer_dim_mart B
     ON COALESCE(A.CUSTOMER_ID,-1) = COALESCE(B.CUSTOMER_ID,-1) --Need to param this
     AND COALESCE(A.ADDRESS_ID,-1) = COALESCE(B.ADDRESS_ID,-1)
 WHERE A.AUDIT_HASH_KEY <> COALESCE(B.AUDIT_HASH_KEY,'n/a')
